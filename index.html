@@ -5,6 +5,10 @@
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0" />
+        <meta
+            http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com; style-src 'self' 'unsafe-inline';" />
+
         <title>Kaeru Player</title>
         <style>
             *,
@@ -273,12 +277,21 @@
             </div>
         </main>
 
-        <script>
-            (function () {
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", () => {
                 const tag = document.createElement("script");
                 tag.src = "https://www.youtube.com/iframe_api";
                 document.head.appendChild(tag);
-            })();
+
+                tag.onload = () => {
+                    onYouTubeIframeAPIReady();
+                };
+
+                const playPauseBtn = document.getElementById("playPauseBtn");
+                if (playPauseBtn) {
+                    playPauseBtn.addEventListener("click", toggleAudio);
+                }
+            });
 
             let player;
 
@@ -318,13 +331,6 @@
                     }.svg`;
                 }
             }
-
-            document.addEventListener("DOMContentLoaded", () => {
-                const playPauseBtn = document.getElementById("playPauseBtn");
-                if (playPauseBtn) {
-                    playPauseBtn.addEventListener("click", toggleAudio);
-                }
-            });
         </script>
     </body>
 </html>
