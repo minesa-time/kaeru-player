@@ -5,6 +5,7 @@
 })();
 
 let player;
+
 function onYouTubeIframeAPIReady() {
     player = new YT.Player("player", {
         videoId: "rGtf0LTlLr0",
@@ -17,7 +18,7 @@ function onYouTubeIframeAPIReady() {
             rel: 0,
         },
         events: {
-            onReady: updateButton,
+            onReady: () => setTimeout(updateButton, 200),
         },
     });
 }
@@ -26,8 +27,9 @@ function toggleAudio() {
     if (!player) return;
 
     const icon = document.getElementById("playPauseIcon");
-    const isPlaying = player.getPlayerState() === 1;
+    if (!icon) return;
 
+    const isPlaying = player.getPlayerState() === 1;
     isPlaying ? player.pauseVideo() : player.playVideo();
     icon.src = `./assets/${isPlaying ? "play" : "pause"}.svg`;
 }
@@ -40,3 +42,10 @@ function updateButton() {
         }.svg`;
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    if (playPauseBtn) {
+        playPauseBtn.addEventListener("click", toggleAudio);
+    }
+});
