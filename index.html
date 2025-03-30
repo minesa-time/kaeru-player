@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+        <title>Kaeru Player</title>
+        <link
+            rel="stylesheet"
+            href="styles.css" />
+    </head>
+    <body>
+        <main>
+            <nav class="glass">
+                <ul>
+                    <li class="selected-tab">
+                        <img
+                            src="./assets/list.svg"
+                            alt="Playlist" />
+                    </li>
+                </ul>
+            </nav>
+
+            <section>
+                <div class="nav">
+                    <h1>Neo's Albums</h1>
+                    <img
+                        src="./assets/Neo.JPG"
+                        alt="Neo"
+                        width="34" />
+                </div>
+                <div class="list-holders">
+                    <div class="card">
+                        <img
+                            src="./assets/melting-time.webp"
+                            alt="Melting Time" />
+                        <span class="card-title">melting-time</span>
+                        <span class="card-composer">Neodevils</span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="player glass">
+                <button
+                    id="playPauseBtn"
+                    onclick="toggleAudio()">
+                    <img
+                        id="playPauseIcon"
+                        src="./assets/play.svg"
+                        alt="Play/Pause" />
+                </button>
+                <img
+                    class="cover"
+                    src="./assets/melting-time.webp"
+                    alt="Album Cover" />
+                <div class="info">
+                    <span id="videoTitle">melting-time</span>
+                    <span id="videoArtist">Neodevils</span>
+                </div>
+                <div id="player"></div>
+            </div>
+        </main>
+
+        <script src="script.js"></script>
+    </body>
+</html>
